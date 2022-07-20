@@ -186,7 +186,7 @@ In a filter context, a query clause answers the question “*Does this document 
 > 
 
 ### Bool query (with pagination and sort)
-```json lines
+```
 GET {name_of_index}/_search?sort={fieldName}&pretty
 {
   "query": {
@@ -232,7 +232,7 @@ cannot perform sorting for fields that are analyzed (text cannot be sorted but k
 
 if you need to sort based on text which are analyzed you have to change the mapping like the following:
 
-```json lines
+```
 /{indexName}/
 {
 	"mappings": {
