@@ -9,8 +9,8 @@ Resources:
 ### Concurrency problems:
 1. dirty reads: read an uncommitted (dirty) value
 2. dirty writes: overwrite an uncommitted (dirty) value
-3. lost update (write skew): 
-4. non-repeatable reads (read skew): read same row multiple times and get different results (when a write operation happens while these reads are happening in one transaction)
+3. lost update (write skew): when one transaction overwrites an update made by another transaction
+4. fuzzy / non-repeatable reads (read skew): read same row multiple times and get different results (when a write operation happens while these reads are happening in one transaction)
 5. phantom reads: 
 
 ### isolation levels:
