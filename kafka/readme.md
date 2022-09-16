@@ -26,7 +26,7 @@
 * **ISR partition**: in-sync replica (slave)
   * other brokers are ISR
 
-![np](static/cluster-broker.png)
+![np](static/cluster-broker-2.png)
 
 * **producer**: write data on topics
   * know which partition and broker to use
