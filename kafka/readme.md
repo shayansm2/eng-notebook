@@ -33,9 +33,26 @@
   * lead balancer
     * round-robin for messages without key
     * key-based: all keys go to same partition (key-hashing)
+  * producers get acknowledgement of data writes:
+    * acks = 0: producer won't wait for acknowledgement (possible data loss)
+    * acks = 1: producer wait for leader's acknowledgement (limited data loss)
+    * acks = all: producer wait for leader + replicas acknowledgement (no data loss)
+****
 * **consumer**: read data from topic
   * know which broker to read from
   * read on order in each partition
 * **consumer group**: each consumer group can have multiple consumers
+  * each consumer group can read all data from all brokers
+  * each partition is assigned to one consumer and only that consumer within that consumer group can read that data
+  * if #consumers > #partitions then some consumers are inactive (not recommended but use for backup) 
 
 ![np](static/consumer-groups.png)
+
+* consumer offset: the offset which the consumer group was reading ```__consumer_offset```
+  * 3 types of committing offsets:
+    1. at most once: commit when data is received
+       * if process fails, message will be lost
+    2. at least once: commit when data is received and process is done
+       * if process fails, it will read the message again
+       * process should be idempotent
+    3. exactly once:
