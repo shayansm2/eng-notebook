@@ -8,15 +8,21 @@
 
 ![np](static/big-picture.png)
 
-* **message**: data to store on kafka (orderId:123) like rows in SQL db
+* **message**: unit of data to store on kafka (orderId:123) like rows in SQL db
   * messages are immutable after write
+* **key**: optional metadata of message
+  * are being used to write messages in to partitions in a more controlled manner
 * **topic**: the name or label of messages (order:create) like tables in SQL db
 * **partition**: each topic has multiple partitions
   * message assignments to partitions is handled by producer and is round-robin
   * if the messages have key all messages with same key go to the same partition
+* **batch**: collection of messages on same topic and same partition
+  * for efficiency, messages are writen into kafka in batches
+  * batches are compressed for better data transfer
 * **offset**: each message in a partition has a _unique_ and incremental id named offset
   * the incremental order is within each partition (not topic)
   * kafka keeps data for limited time (default 1 week). after delete offset will not get reset
+* **stream**: single topic of data, regardless of number of partitions
 
 ![np](static/topic-partition-offset.png)
 
@@ -37,6 +43,7 @@
 ![np](static/cluster-broker-2.png)
 
 * **producer**: write data on topics
+  * also known as publisher, writers
   * know which partition and broker to use
   * lead balancer
     * round-robin for messages without key
@@ -47,12 +54,14 @@
     * acks = all: producer wait for leader + replicas acknowledgement (no data loss)
 ****
 * **consumer**: read data from topic
+  * also known as subscribers, readers
   * know which broker to read from
   * read on order in each partition
 * **consumer group**: each consumer group can have multiple consumers
   * each consumer group can read all data from all brokers
   * each partition is assigned to one consumer and only that consumer within that consumer group can read that data
   * if #consumers > #partitions then some consumers are inactive (not recommended but use for backup) 
+* **ownership**: the mapping of a customer to a partition
 
 ![np](static/consumer-groups.png)
 
