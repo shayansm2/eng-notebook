@@ -82,3 +82,36 @@
 ![np](static/zookeeper-kafka.png)
 ***
 ![np](static/guarantees.png)
+
+## kafka CLI commands
+### topics:
+create
+```commandline
+kafka-topics.sh --bootstrap-server localhost:9092 --topic topic_name --create
+```
+options:
+* `--partitions 3`
+* `--replication-factor 2`
+
+see existing topics:
+```commandline
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+kafka-topics.sh --bootstrap-server localhost:9092 --describe
+kafka-topics.sh --bootstrap-server localhost:9092 --topic topic_name --describe
+```
+delete
+```commandline
+kafka-topics.sh --bootstrap-server localhost:9092 --topic topic_name --delete
+```
+### producers:
+```commandline
+kafka-console-producer --bootstrap-server localhost:9092 --topic topic_name
+```
+options:
+* `--producer-property acks=all`
+### consumers:
+```commandline
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic shayan_test
+```
+options:
+* `--from-beginning`
