@@ -1,0 +1,965 @@
+{
+	"info": {
+		"_postman_id": "270fda5f-798b-477a-b8fc-fdc2c54f5c44",
+		"name": "elastic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "status",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9200/",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cluster health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9200/_cluster/health",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cluster",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "nodes status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9200/_nodes/stats",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_nodes",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "index & mapping",
+			"item": [
+				{
+					"name": "create index",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:9200/friends/",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete index",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/friends/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get mapping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_mappings/",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_mappings",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create mapping",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mappings\": {\n        \"properties\": {\n            \"id\": {\n                \"type\": \"integer\"\n            },\n            \"name\": {\n                \"type\": \"text\"\n            },\n            \"is_close_friend\": {\n                \"type\": \"boolean\"\n            },\n            \"friendship_created_at\": {\n                \"type\": \"date\"\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9200/friends/",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRUD documents",
+			"item": [
+				{
+					"name": "get document",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/friends/_doc/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								"_doc",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert document (without id)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"4\",\n    \"name\": \"Baran\",\n    \"is_close_friend\": false,\n    \"friendship_created_at\": 2021\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9200/friends/_doc/",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								"_doc",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert document / full update (with id)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1\",\n    \"name\": \"Aidin\",\n    \"is_close_friend\": true,\n    \"friendship_created_at\": 1997\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9200/friends/_doc/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								"_doc",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert document (not overwrite)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"fake\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9200/friends/_create/3",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								"_create",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partial update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"doc\": {\n        \"is_close_friend\": true\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/friends/_update/2/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								"_update",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete document",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9200/friends/_doc/4",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"friends",
+								"_doc",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bulk insert from json file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/home/user/Downloads/movies.json"
+							},
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9200/_bulk/",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_bulk",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "full update with concurrency",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 135569,\n    \"title\": \"big bang theory\",\n    \"year\": 2010,\n    \"genre\": [\n        \"sticom\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9200/movies/_doc/135569?if_seq_no=5&if_primary_term=1",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_doc",
+								"135569"
+							],
+							"query": [
+								{
+									"key": "if_seq_no",
+									"value": "5"
+								},
+								{
+									"key": "if_primary_term",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partial update with concurrency",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"doc\": {\n        \"title\": \"friends\",\n        \"year\": 1994\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9200/movies/_doc/135569/_update?retry_on_conflict=1",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_doc",
+								"135569",
+								"_update"
+							],
+							"query": [
+								{
+									"key": "retry_on_conflict",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search",
+			"item": [
+				{
+					"name": "get some data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.30.6.151:9200/orders-new/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"orders-new",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lite query search date",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search?q=+created_at>2020+category_title_en:fresh",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "+created_at>2020+category_title_en:fresh"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lite query search title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search?q=product_title_fa:یاماها",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "product_title_fa:یاماها"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "match query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"match\": {\n            \"product_title_fa\": \"پیانو\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "match phrase query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"match_phrase\": {\n            \"product_title_fa\": \"گوشی سامسونگ\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search?",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "macth phrase query with slop",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"match_phrase\": {\n            \"product_title_fa\": {\n                \"query\": \"گوشی سامسونگ\",\n                \"slop\": 1\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multi match query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"multi_match\": {\n            \"query\": \"کاله\",\n            \"fields\": [\n                \"brand_title_fa^2\",\n                \"product_title_fa\"\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multi match phrase query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"multi_match\": {\n            \"query\": \"ساعت مردانه\",\n            \"slop\": 2,\n            \"fields\": [\n                \"product_title_en\",\n                \"category_title_en^2\"\n            ],\n            \"type\": \"phrase\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"filter\": {\n                \"term\": {\n                    \"is_b2b\": true\n                }\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bool query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": {\n                \"match\": {\n                    \"brand_title_en\": \"samsung\"\n                }\n            },\n            \"filter\": {\n                \"range\": {\n                    \"created_at\": {\n                        \"gte\": \"2020-01-01 00:00:00\",\n                        \"lte\": \"2021-01-01 00:00:00\"\n                    }\n                }\n            },\n            \"must_not\": {\n                \"match\": {\n                    \"product_title_en\": \"Watch\"\n                }\n            },\n            \"should\" : {\n                \"match\": {\n                    \"category_title_en\": \"mobile\"\n                }\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/products/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"products",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "term query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"term\": { // match will have results\n            \"person_name\": \"Shayan\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/users-new/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"users-new",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter with multiple terms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"filter\": [\n                {\n                    \"term\": {\n                        \"user_id\": 6935399\n                    }\n                },\n                {\n                    \"term\": {\n                        \"product_id\": 5357017\n                    }\n                },\n                {\n                    \"terms\" : {\n                        \"status\": [\"sent\"]\n                    }\n                }\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/orders-new/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"orders-new",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "source (select rows)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"filter\": [\n                {\n                    \"term\": {\n                        \"user_id\": 6935399\n                    }\n                },\n                {\n                    \"term\": {\n                        \"product_id\": 5357017\n                    }\n                },\n                {\n                    \"terms\": {\n                        \"status\": [\n                            \"sent\"\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    \"_source\": [\n        \"cart_id\",\n        \"product_id\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/orders-new/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"orders-new",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fuzzy query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"fuzzy\": {\n            \"product_title_fa\": {\n                \"value\": \"بستن\",\n                \"fuzziness\": 1\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/jet-products/_search",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"jet-products",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all things together",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"fuzzy\": {\n                        \"product_title_fa\": {\n                            \"value\": \"شگلات\",\n                            \"fuzziness\": 2\n                        }\n                    }\n                },\n                {\n                    \"match\": {\n                        \"category_title_fa\": \"بستنی\"\n                    }\n                }\n            ],\n            \"must_not\": {\n                \"match\": {\n                    \"category_title_en\": \"بیسکویت\"\n                }\n            },\n            \"filter\": [\n                {\n                    \"range\": {\n                        \"created_at\": {\n                            \"gt\": \"2021-06-01 00:00:00\",\n                            \"lt\": \"2021-07-01 00:00:00\"\n                        }\n                    }\n                },\n                {\n                    \"range\": {\n                        \"product_price\": {\n                            \"lte\": 100000\n                        }\n                    }\n                }\n            ]\n        }\n    },\n    \"from\": 3,\n    \"size\": 2,\n    \"_source\": [\n        \"product_title_fa\",\n        \"shop_name\",\n        \"brand_title_fa\",\n        \"category_title_fa\",\n        \"product_price\"   \n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.30.6.151:9200/jet-products/_search?sort=id",
+							"protocol": "http",
+							"host": [
+								"172",
+								"30",
+								"6",
+								"151"
+							],
+							"port": "9200",
+							"path": [
+								"jet-products",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
