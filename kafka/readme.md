@@ -109,9 +109,22 @@ kafka-console-producer --bootstrap-server localhost:9092 --topic topic_name
 ```
 options:
 * `--producer-property acks=all`
+* `--property parse.key=true --property key.separator=,`
 ### consumers:
 ```commandline
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic shayan_test
 ```
 options:
 * `--from-beginning`
+* `--group group_name`
+* `--property print.key=true --property key.separator=,`
+
+consumer groups:
+```commandline
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --groupd group_name
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 --execute --reset-offsets --to-earliest --topic topic_name
+```
+execute options
+* `--topic topic_name` and `--all-topics`
+* `--to-earliest`,  `--to-datetime`, `--to-latest`, `--shift-by` and `--to-current`
