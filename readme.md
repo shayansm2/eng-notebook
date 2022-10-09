@@ -1,6 +1,6 @@
 # my engineering notebooks:
 
 1. [database](https://github.com/shayansm2/eng-notebook/tree/main/database)
-2. [design-patterns](https://github.com/shayansm2/eng-notebook/tree/main/design-patterns)
-3. [elasticsearch](https://github.com/shayansm2/eng-notebook/tree/main/elasticsearch)
-4. [kafka](https://github.com/shayansm2/eng-notebook/tree/main/kafka)
+2. [elasticsearch](https://github.com/shayansm2/eng-notebook/tree/main/elasticsearch)
+3. [kafka](https://github.com/shayansm2/eng-notebook/tree/main/kafka)
+4. [docker](https://github.com/shayansm2/eng-notebook/tree/main/docker)

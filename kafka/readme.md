@@ -45,7 +45,7 @@
 * **producer**: write data on topics
   * also known as publisher, writers
   * know which partition and broker to use
-  * lead balancer
+  * load balancer
     * round-robin for messages without key
     * key-based: all keys go to same partition (key-hashing)
   * producers get acknowledgement of data writes:
