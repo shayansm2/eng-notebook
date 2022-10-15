@@ -1,7 +1,11 @@
 # Docker
-resources: 
+main resources: 
 1. [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
 2. [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
+3. [digikala docs]()
+
+articles:
+1. 
 ## terminology
 **what is Container**: a portable package of applications with all their dependencies and configurations which makes development easier.
 
@@ -24,8 +28,9 @@ If layer exists locally, it will not get downloaded again (can occur in update i
 ```commandline
 docker run imageName:version
 docker run -d imageName
+docker run --name containerName imageName:version
 ```
-the ```-d``` runs the container in the detached mode
+the `-d` runs the container in the detached mode
 
 ---
 * see all running containers
@@ -33,7 +38,7 @@ the ```-d``` runs the container in the detached mode
 docker ps
 docker ps -a
 ```
-the ```-a``` will show all the running and stopped containers
+the `-a` will show all the running and stopped containers
 
 ### docker vs VMs
 OS is made up of 2 layers, kernel and application.
@@ -62,7 +67,23 @@ docker images
 docker start containerId
 docker stop containerId
 ```
-pay attention to the difference between run and start: 
-```run imageName``` vs ```start containerId```
+`docker run` creates a container while `docker start` restarts a stopped container
 
 ### container port vs host port
+![Untitled](static/containerAndHostPorts.png)
+in order to connect to a container, you should call the host port which is mapped to the container port
+* run a container with binding host port to container port
+```commandline
+docker run -p<hostPort>:<containerPort> imageName
+```
+* see the logs of a container
+```commandline
+docker logs containerId
+docker logs containerName
+```
+* **go to the terminal of the running container**
+```commandline
+docker exec -it containerId /bin/bash
+docker exec -it containerName /bin/bash
+```
+which `-it` means iterative
