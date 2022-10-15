@@ -1,11 +1,17 @@
 # Docker
 main resources: 
-1. [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
-2. [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
-3. [digikala docs]()
+- [ ] [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
+- [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
+- [ ] [digikala docs](https://docs.digikala.com/display/onboarding/Introduction+to+Docker+and+containerization)
 
 articles:
-1. 
+- [ ] https://opensource.com/resources/virtualization
+- [ ] https://www.citrix.com/glossary/what-is-containerization.html
+- [ ] https://docs.docker.com/get-started/
+- [ ] https://github.com/wsargent/docker-cheat-sheet
+- [ ] https://docker-curriculum.com/
+- [ ] https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
+
 ## terminology
 **what is Container**: a portable package of applications with all their dependencies and configurations which makes development easier.
 
