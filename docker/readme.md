@@ -4,7 +4,7 @@ main resources:
 - [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
 - [ ] [digikala docs](https://docs.digikala.com/display/onboarding/Introduction+to+Docker+and+containerization)
 
-articles:
+usefully articles:
 - [ ] https://opensource.com/resources/virtualization
 - [ ] https://www.citrix.com/glossary/what-is-containerization.html
 - [ ] https://docs.docker.com/get-started/
@@ -12,7 +12,7 @@ articles:
 - [ ] https://docker-curriculum.com/
 - [ ] https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
 
-## terminology
+## Docker Basics
 **what is Container**: a portable package of applications with all their dependencies and configurations which makes development easier.
 
 container is a stack of images on top of each other. The OS (linux) image is at the button and the application image is at the top.
@@ -73,23 +73,68 @@ docker images
 docker start containerId
 docker stop containerId
 ```
-`docker run` creates a container while `docker start` restarts a stopped container
+`docker run` creates a container while `docker start` restarts a stopped container 
+
+have in mind that when you restart the container, data will be lost and every configuration will be gone. Data is not persistent in containers unless you use **Volumes**.
 
 ### container port vs host port
 ![Untitled](static/containerAndHostPorts.png)
 in order to connect to a container, you should call the host port which is mapped to the container port
 * run a container with binding host port to container port
 ```commandline
-docker run -p<hostPort>:<containerPort> imageName
+docker run -p hostPort:containerPort imageName
 ```
 * see the logs of a container
 ```commandline
 docker logs containerId
-docker logs containerName
+docker logs containerName | tail
 ```
+`tail` is for showing the last logs
 * **go to the terminal of the running container**
 ```commandline
 docker exec -it containerId /bin/bash
 docker exec -it containerName /bin/bash
 ```
 which `-it` means iterative
+
+---
+
+### docker network
+all containers in a docker network can see each other using container name. 
+all containers outside a docker network should call the container with its domain and port.
+* see all docker networks
+```commandline
+docker network ls
+```
+* create a docker network
+```commandline
+docker network create networkName
+```
+* run a container in a docker network
+```commandline
+docker run --net networkName imageName
+```
+---
+
+#### docker run command with all it's options:
+```commandline
+docker run -d \
+    --network networkName \
+    --name containerName \
+    -p hostPort:containerPort \
+    -e INVIRONMENTAL_VARIABLE_NAME = envVariableValue \
+    imageName:tag
+```
+* `-d` is for detached mode
+* `-e` is for environmental variables
+* `-p` is for port
+## docker compose
+instead of running multiple containers in terminal, docker compose automate the process by writing all configurations in a **YAML** file.
+![Untitled](static/dockerCompose.png)
+docker compose create a common network for all its containers 
+* create and run containers (shot down containers) using docker compose
+```commandline
+docker-compose -f fileName.yml up
+docker-compose -f fileName.yml down
+```
+`-f` is for file name
