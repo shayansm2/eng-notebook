@@ -5,12 +5,12 @@ main resources:
 - [ ] [digikala docs](https://docs.digikala.com/display/onboarding/Introduction+to+Docker+and+containerization)
 
 usefully articles:
-- [ ] https://opensource.com/resources/virtualization
-- [ ] https://www.citrix.com/glossary/what-is-containerization.html
-- [ ] https://docs.docker.com/get-started/
-- [ ] https://github.com/wsargent/docker-cheat-sheet
-- [ ] https://docker-curriculum.com/
-- [ ] https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
+- https://opensource.com/resources/virtualization
+- https://www.citrix.com/glossary/what-is-containerization.html
+- https://docs.docker.com/get-started/
+- https://github.com/wsargent/docker-cheat-sheet
+- https://docker-curriculum.com/
+- https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
 
 ## Docker Basics
 **what is Container**: a portable package of applications with all their dependencies and configurations which makes development easier.
@@ -94,8 +94,11 @@ docker logs containerName | tail
 ```commandline
 docker exec -it containerId /bin/bash
 docker exec -it containerName /bin/bash
+docker exec -it containerName /bin/sh
 ```
 which `-it` means iterative
+
+some containers don't have bash and should connect to shell instead
 
 ---
 
@@ -128,6 +131,8 @@ docker run -d \
 * `-d` is for detached mode
 * `-e` is for environmental variables
 * `-p` is for port
+
+by running `env` inside the container (`docker exec -it containrId bin/bash`) you can see all the env variables.
 ## docker compose
 instead of running multiple containers in terminal, docker compose automate the process by writing all configurations in a **YAML** file.
 ![Untitled](static/dockerCompose.png)
@@ -138,3 +143,33 @@ docker-compose -f fileName.yml up
 docker-compose -f fileName.yml down
 ```
 `-f` is for file name
+## Dockerfile
+Dockerfile is a blueprint for building images.
+![Untitled](static/Dockerfile.png)
+* `FROM` means that the dockerfile is going to start by basing it on what image
+![Untitled](static/imageLayers.png)
+  * each image is based on another image. image layers are all the images which are based on each other to build the final image
+* `ENV` you can set env variables on dockerfile too, but it's preferred to have them on docker compose file
+* `RUN` you can execute any linux command inside the container
+* `COPY` copy files from the host machine  to the container and is different with `RUN cp` which runs on container
+* `CMD` entrypoint command (you can have multiple `RUN`commands but only one `CMD`)
+---
+* create an image from Dockerfile
+```commandline
+docker build -t imageName:tagName DockerfilePath
+```
+and then you can run your image with `docker run imageName:tagName`
+> what Jenkins do is that it create an image from the docker file and push the image to the docker repository. 
+> 
+> the image then can be pulled from docker repository to be run on local for development, test env or production 
+
+in order to rebuild an image (when you changed the docker file), you have to delete to old image
+* delete a container
+```commandline
+docker rm containerId
+```
+* remove an image
+```commandline
+docker rmi imageId
+```
+you can only delete an image when no container is using it.
