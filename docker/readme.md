@@ -94,9 +94,9 @@ docker logs containerName | tail
 ```commandline
 docker exec -it containerId /bin/bash
 docker exec -it containerName /bin/bash
-docker exec -it containerName /bin/sh
+docker exec -it containerName /bin/sh -u userName
 ```
-which `-it` means iterative
+which `-it` means iterative and `-u` means to enter the terminal of which user
 
 some containers don't have bash and should connect to shell instead
 
