@@ -1,13 +1,14 @@
 # Design Patterns
 
-Resources 
+Design Pattern Resources:
+- Head First Design Pattern
+- [Design Patterns and Refactoring](https://sourcemaking.com/design_patterns)
 
-Head First Design Pattern
+Solid Principles Resources:
+- Agile Software Development
+- Clean Architecture
 
-[Design Patterns and Refactoring](https://sourcemaking.com/design_patterns)
-
-[Design Patterns](https://refactoring.guru/design-patterns)
-
+# Object Oriented
 ## OOP Basics
 
 1. Abstraction → implementation of private/protected methods inside objects
@@ -41,27 +42,26 @@ Head First Design Pattern
     
     ![Untitled](static/Untitled%203.png)
     
+# SOLID Principles
+## SRP
+Responsibility: reason for a change
 
+## OCP
+## DIP
 # Design Patterns
 
-1. Strategy
-    
-    separate the part of the code that varies, encapsulate them and use dependency injection for setting the strategy
-    
-    ![Untitled](static/Untitled%204.png)
-    
+#### Strategy:
+separate the part of the code that varies, encapsulate them and use dependency injection for setting the strategy 
 
 ![Untitled](static/Untitled%205.png)
 
-1. Observer. some objects are observers (listeners) which will get notified when the subject is changed → kinda like dirty queues which make a loosely coupled system.
+#### Observer:
+some objects are observers (listeners) which will get notified when the subject is changed → kinda like dirty queues which make a loosely coupled system.
     
-    observers can be updated by two ways:
-    
-    1. subject push the current data to the observers
-    2. subject notify observers and they will pull the data from the subject
-    
-    ![Untitled](static/Untitled%206.png)
-    
+observers can be updated by two ways:
+ 
+1. subject push the current data to the observers
+2. subject notify observers, and they will pull the data from the subject
 
 ![Untitled](static/Untitled%207.png)
 
