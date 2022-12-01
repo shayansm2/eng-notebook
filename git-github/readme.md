@@ -1,4 +1,8 @@
-# diff and patch Cheat Sheet
+### sources: 
+1. [Introduction to Git and GitHub](https://www.coursera.org/learn/introduction-git-github/)
+2. ProGit book
+
+# diff and patch
 ### diff
 
 diff is used to find differences between two files. On its own, it’s a bit hard to use; instead, use it with diff -u to find lines which differ in two files:
@@ -7,64 +11,45 @@ diff is used to find differences between two files. On its own, it’s a bit har
 
 diff -u is used to compare two files, line by line, and have the differing lines compared side-by-side in the same output. See below:
 
-```
-~$ cat menu1.txt
-Menu1:
-
-Apples
-Bananas
-Oranges
-Pears
-
-~$ cat menu2.txt
-Menu:
-
-Apples
-Bananas
-Grapes
-Strawberries
-
-~$ diff -u menu1.txt menu2.txt
---- menu1.txt 2019-12-16 18:46:13.794879924 +0900
-+++ menu2.txt 2019-12-16 18:46:42.090995670 +0900
-
-@@ -1,6 +1,6 @@
--Menu1:
-+Menu:
-
-Apples
-Bananas
--Oranges
--Pears
-+Grapes
-+Strawberries
-```
-
 ### Patch
 
 Patch is useful for applying file differences. See the below example, which compares two files. The comparison is saved as a .diff file, which is then patched to the original file!
 
 ```
-~$ cat hello_world.txt
-Hello World
-~$ cat hello_world_long.txt
-Hello World
-
-It's a wonderful day!
-~$ diff -u hello_world.txt hello_world_long.txt
---- hello_world.txt 2019-12-16 19:24:12.556102821 +0900
-+++ hello_world_long.txt 2019-12-16 19:24:38.944207773 +0900
-@@ -1 +1,3 @@
-Hello World
-+
-+It's a wonderful day!
-~$ diff -u hello_world.txt hello_world_long.txt > hello_world.diff
-~$ patch < hello_world.diff
-patching file hello_world.txt
-~$ cat hello_world.txt
-Hello World
-  
-It's a wonderful day!
+~$ diff -u file1.txt file2.txt > file_diff.diff
+~$ patch file1 < file_diff.diff
 ```
 
 There are some other interesting patch and diff commands such as patch -p1, diff -r !
+
+# GIT basics
+### the three states
+1. working tree: a single checkout of one version (useally current version) of the project.
+2. staging area (index): a file that contains all the info about what changes are going to go into the next commit
+3. git repository: contains all the changes and the history of the project.
+
+![pic](static/00173.png)
+
+each file can be in one the follwoing states:
+1. modified:changed file before moving them to staging area
+2. staged: files that are ready to get commited to the git repo
+3. commited: files in gir repo
+
+### git configs:
+```
+git config --global user.name 'shayan'
+git config --global user.email 'shayan@email.com'
+git config -l
+```
+which `--global` will set this value for all repos.
+you can use `--local` for specific repos to have different configs
+
+### basic commands
+```
+git init
+git clone repoLink
+git add fileName
+git status
+git commit -m 'commit message'
+git log
+```
