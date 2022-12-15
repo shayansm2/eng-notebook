@@ -32,7 +32,7 @@ plt.plot(x, y, 'bo-', label='augmented e-constraint')
 
 ## seaborn various plots
 
-![plots](static/plots.png)
+![plots](static/plot.png)
 
 ```python
 # Line chart
