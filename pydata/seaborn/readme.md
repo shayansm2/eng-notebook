@@ -53,6 +53,8 @@ sns.histplot(df['x'])
 sns.kdeplot(data=df["x"], shade=True)
 # 2D KDE plots
 sns.jointplot(x=df['x'], y=df['y'], kind="kde")
+# Count Plots
+sns.countplot(data=train, x='x')
 ```
 
 ## seaborn figure options
