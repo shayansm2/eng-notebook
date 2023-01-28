@@ -28,8 +28,11 @@ container repositories like [docker hub](https://hub.docker.com/) stores a lot o
 docker pull imageName:version
 ```
 after running this, all layers of the container will be downloaded
+
 ![Untitled](static/layersOfImages.png)
+
 If layer exists locally, it will not get downloaded again (can occur in update image which only different layers will be downloaded) 
+
 ---
 * creates a container from image, starts the container, if not found locally get the image from docker hub
 ```commandline
