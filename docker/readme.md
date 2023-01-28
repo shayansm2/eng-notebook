@@ -3,6 +3,7 @@ main resources:
 - [ ] [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
 - [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
 - [ ] [digikala docs](https://docs.digikala.com/display/onboarding/Introduction+to+Docker+and+containerization)
+- [ ] [youtube of data-engineering zoomcamp](https://www.youtube.com/watch?v=EYNwNlOrpr0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
 
 usefully articles:
 - https://opensource.com/resources/virtualization
@@ -152,7 +153,27 @@ Dockerfile is a blueprint for building images.
 * `ENV` you can set env variables on dockerfile too, but it's preferred to have them on docker compose file
 * `RUN` you can execute any linux command inside the container
 * `COPY` copy files from the host machine  to the container and is different with `RUN cp` which runs on container
-* `CMD` entrypoint command (you can have multiple `RUN`commands but only one `CMD`)
+* `WORKDIR` set up the working directory inside the container
+* `CMD` or `ENTRYPOINT` entrypoint command (you can have multiple `RUN`commands but only one `CMD`) which defines what should be run when running the image `docker run -it image:tag`
+
+example Dockerfile
+```dockerfile
+# base Docker image that we will build on
+FROM python:3.9.1
+
+# set up our image by installing prerequisites; pandas in this case
+RUN pip install pandas
+
+# set up the working directory inside the container
+WORKDIR /app
+# copy the script to the container. 1st name is source file, 2nd is destination
+COPY pipeline.py pipeline.py
+
+# define what to do first when the container runs
+# in this example, we will just run the script
+ENTRYPOINT ["python", "pipeline.py"]
+```
+
 ---
 * create an image from Dockerfile
 ```commandline
