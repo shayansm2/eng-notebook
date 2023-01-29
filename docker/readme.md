@@ -197,3 +197,12 @@ docker rm containerId
 docker rmi imageId
 ```
 you can only delete an image when no container is using it.
+
+---
+### difference between **dockerfile** and **docker-compose**
+- dockerfile is being used when we want to create a new image. 
+- when you want to use an existing image (from docker hub) you don't need to create dockerfile 
+- docker-compose is being used when you want to combine multiple containers and their config into a single file
+- docker-compose holds all the configs you may need when running `docker run`
+- docker-compose can consist of multiple containers. in docker desktop, ![Untitled](static/containerIcon.png) is the icon of container
+and ![Untitled](static/dockerComposeIcon.png) is the icon of docker-compose
