@@ -65,10 +65,10 @@ flowchart LR
         m2[message 2]
         m3[message 3]
     end
-    p-->|1. Declare topic 'abc'|k
-    p-->|2. Send messages 1,2,3|k
-    k -->|3. Write messages 1,2,3|logs
-    k-.->|4. ack|p
+    p-->|1. producer declares the topic it wants to talk about to Kafka|k
+    p-->|2. producer sends messages to Kafka|k
+    k -->|3. Kafka assigns an ID to the messages and writes them to the logs|logs
+    k-.->|4. Kafka sends an acknowledgement to the producer|p
 ```
 
 ---
@@ -76,11 +76,6 @@ flowchart LR
   * also known as subscribers, readers
   * know which broker to read from
   * read on order in each partition
-* **consumer group**: each consumer group can have multiple consumers
-  * each consumer group can read all data from all brokers
-  * each partition is assigned to one consumer and only that consumer within that consumer group can read that data
-  * if #consumers > #partitions then some consumers are inactive (not recommended but use for backup) 
-* **ownership**: the mapping of a customer to a partition
 
 internals of getting message from kafka broker by consumer:
 ```mermaid
@@ -92,16 +87,21 @@ flowchart LR
         m2[message 2]
         m3[message 3]
     end
-    c-->|1. Subscribe to topic 'abc|k
-    k<-->|2. Check messages|logs
-    k-->|3. Send unread messages|c
-    c-.->|4. ack|k
-
+    c-->|1. consumer declares to Kafka that it wants to read from a particular topic|k
+    k<-->|2. Kafka checks logs and get read and unread messages|logs
+    k-->|3. Kafka sends unread messages to consumer|c
+    c-.->|4. The consumer sends an acknowledgement to Kafka|k
 ```
+
+* **consumer group**: each consumer group can have multiple consumers
+  * each consumer group can read all data from all brokers
+  * each partition is assigned to one consumer and only that consumer within that consumer group can read that data
+  * if #consumers > #partitions then some consumers are inactive (not recommended but use for backup) 
+* **ownership**: the mapping of a customer to a partition
 
 ![np](static/consumer-groups.png)
 
-* **consumer offset**: the offset which the consumer group was reading ```__consumer_offset```
+* **consumer offset**: the offset which the consumer group was reading. `__consumer_offset`
   * 3 types of committing offsets:
     1. at most once: commit when data is received
        * if process fails, message will be lost
@@ -109,6 +109,11 @@ flowchart LR
        * if process fails, it will read the message again
        * process should be idempotent
     3. exactly once:
+
+how consumer offset works?
+
+`__consumer_offsets` is a special topic that keeps track of messages read by each consumer and topic. When a consumer reads messages and Kafka receives the ack, Kafka posts a message to `__consumer_offsets` with the consumer ID, the topic and the message IDs that the consumer has read.
+
 * **zookeeper**: kafka manager
   * manage brokers (keeps a list of them)
   * perform leader election of partitions
