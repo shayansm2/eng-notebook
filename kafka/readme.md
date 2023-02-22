@@ -57,11 +57,12 @@
 
 internals of sending message from producer to kafka broker:
 ```mermaid
-flowchart LR
+flowchart TB
     p(producer)
     k{{kafka broker}}
     subgraph logs[logs for topic 'abc']
-        m1[messages]
+        m1[message 1]
+        m2[message 2]
     end
     p-->|1. producer declares the topic it wants to talk about to Kafka|k
     p-->|2. producer sends messages to Kafka|k
@@ -77,11 +78,12 @@ flowchart LR
 
 internals of getting message from kafka broker by consumer:
 ```mermaid
-flowchart LR
+flowchart TB
     c(consumer)
     k{{kafka broker}}
     subgraph logs[logs for topic 'abc']
         m1[messages]
+        m2[message 2]
     end
     c-->|1. consumer declares to Kafka that it wants to read from a particular topic|k
     k<-->|2. Kafka checks logs and get read and unread messages|logs
