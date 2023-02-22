@@ -3,6 +3,7 @@
 #### resources:
 1. [udemy course](https://www.udemy.com/course/apache-kafka/)
 2. [Kafka: The Definitive Guide](https://www.amazon.com/Kafka-Definitive-Real-Time-Stream-Processing/dp/1491936169)
+3. [data streaming with kafka](https://github.com/ziritrion/dataeng-zoomcamp/blob/main/notes/6_streaming.md)
 
 ## kafka system design
 
@@ -30,6 +31,7 @@
   * each broker is a bootstrap server (for broker discovery)
   * each broker know about all brokers, topics and partitions (have metadata)
 * **kafka cluster**: multiple brokers
+* **logs**: data (messages) which stores in kafka brokers' storage disk.
 
 ![np](static/broker-discovery.png)
 
@@ -52,7 +54,24 @@
     * acks = 0: producer won't wait for acknowledgement (possible data loss)
     * acks = 1: producer wait for leader's acknowledgement (limited data loss)
     * acks = all: producer wait for leader + replicas acknowledgement (no data loss)
-****
+
+internals of sending message from producer to kafka broker:
+```mermaid
+flowchart LR
+    p(producer)
+    k{{kafka broker}}
+    subgraph logs[logs for topic 'abc']
+        m1[message 1]
+        m2[message 2]
+        m3[message 3]
+    end
+    p-->|1. Declare topic 'abc'|k
+    p-->|2. Send messages 1,2,3|k
+    k -->|3. Write messages 1,2,3|logs
+    k-.->|4. ack|p
+```
+
+---
 * **consumer**: read data from topic
   * also known as subscribers, readers
   * know which broker to read from
@@ -62,6 +81,23 @@
   * each partition is assigned to one consumer and only that consumer within that consumer group can read that data
   * if #consumers > #partitions then some consumers are inactive (not recommended but use for backup) 
 * **ownership**: the mapping of a customer to a partition
+
+internals of getting message from kafka broker by consumer:
+```mermaid
+flowchart LR
+    c(consumer)
+    k{{kafka broker}}
+    subgraph logs[logs for topic 'abc']
+        m1[message 1]
+        m2[message 2]
+        m3[message 3]
+    end
+    c-->|1. Subscribe to topic 'abc|k
+    k<-->|2. Check messages|logs
+    k-->|3. Send unread messages|c
+    c-.->|4. ack|k
+
+```
 
 ![np](static/consumer-groups.png)
 
@@ -80,7 +116,9 @@
   * have odd number of servers, one leader (which handles write) and the rest followers (which handles reads)
 
 ![np](static/zookeeper-kafka.png)
-***
+
+---
+
 ![np](static/guarantees.png)
 
 ## kafka CLI commands
