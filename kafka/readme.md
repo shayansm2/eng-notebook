@@ -61,9 +61,7 @@ flowchart LR
     p(producer)
     k{{kafka broker}}
     subgraph logs[logs for topic 'abc']
-        m1[message 1]
-        m2[message 2]
-        m3[message 3]
+        m1[messages]
     end
     p-->|1. producer declares the topic it wants to talk about to Kafka|k
     p-->|2. producer sends messages to Kafka|k
@@ -83,9 +81,7 @@ flowchart LR
     c(consumer)
     k{{kafka broker}}
     subgraph logs[logs for topic 'abc']
-        m1[message 1]
-        m2[message 2]
-        m3[message 3]
+        m1[messages]
     end
     c-->|1. consumer declares to Kafka that it wants to read from a particular topic|k
     k<-->|2. Kafka checks logs and get read and unread messages|logs
