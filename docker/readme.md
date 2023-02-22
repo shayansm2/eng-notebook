@@ -2,7 +2,6 @@
 main resources: 
 - [ ] [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
 - [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
-- [ ] [digikala docs](https://docs.digikala.com/display/onboarding/Introduction+to+Docker+and+containerization)
 - [ ] [youtube of data-engineering zoomcamp](https://www.youtube.com/watch?v=EYNwNlOrpr0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
 
 usefully articles:
@@ -72,10 +71,11 @@ container consists of application image + file system + env configs
 docker images
 ```
 ---
-* start and stop the container
+* start, stop and restart the container
 ```commandline
 docker start containerId
 docker stop containerId
+docker restard containerId
 ```
 `docker run` creates a container while `docker start` restarts a stopped container 
 
@@ -96,7 +96,7 @@ docker logs containerName | tail
 `tail` is for showing the last logs
 * **go to the terminal of the running container**
 ```commandline
-docker exec -it containerId /bin/bash
+docker exec -it containerId bash
 docker exec -it containerName /bin/bash
 docker exec -it containerName /bin/sh -u userName
 ```
@@ -150,7 +150,7 @@ docker-compose -f fileName.yml down
 ## Dockerfile
 Dockerfile is a blueprint for building images.
 ![Untitled](static/Dockerfile.png)
-* `FROM` means that the dockerfile is going to start by basing it on what image
+* `FROM` Defines the base image to use and start the build process. means that the dockerfile is going to start by basing it on what image
 ![Untitled](static/imageLayers.png)
   * each image is based on another image. image layers are all the images which are based on each other to build the final image
 * `ENV` you can set env variables on dockerfile too, but it's preferred to have them on docker compose file
@@ -206,3 +206,6 @@ you can only delete an image when no container is using it.
 - docker-compose holds all the configs you may need when running `docker run`
 - docker-compose can consist of multiple containers. in docker desktop, ![Untitled](static/containerIcon.png) is the icon of container
 and ![Untitled](static/dockerComposeIcon.png) is the icon of docker-compose
+
+## Docker Volumes
+// todo
