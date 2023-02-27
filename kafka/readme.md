@@ -78,7 +78,7 @@ flowchart TB
 
 internals of getting message from kafka broker by consumer:
 ```mermaid
-flowchart TB
+flowchart BT
     c(consumer)
     k{{kafka broker}}
     subgraph logs[logs for topic 'abc']
@@ -93,6 +93,8 @@ flowchart TB
 
 * **consumer group**: each consumer group can have multiple consumers
   * each consumer group can read all data from all brokers
+  * when a consumer inside a group reads a message, that message will NOT be delivered to any other consumer in the group
+  * therefore consumer will not have to deal with duplicated or redundant messages.
   * each partition is assigned to one consumer and only that consumer within that consumer group can read that data
   * if #consumers > #partitions then some consumers are inactive (not recommended but use for backup) 
 * **ownership**: the mapping of a customer to a partition
