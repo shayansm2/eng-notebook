@@ -5,8 +5,6 @@
 ```commandline
 ls -ltrh
 ```
-
-
 | option | meaning                            |
 |--------|------------------------------------|
 | `-t`   | sort by time                       |
@@ -33,7 +31,7 @@ cp -rv from to > logFileName
 |--------|--------------------------------------|
 | `-r`   | recursively (handle sub directories) |
 | `-f`   | force                                |
-| `-v`   | log                                  |
+| `-v`   | verbose (with log)                   |
 
 ```commandline
 du -ch
@@ -52,6 +50,23 @@ file fileName
 | option | meaning |
 |--------|---------|
 | `-b`   | brief   |
+
+```commandline
+find dir searchConditions Operations
+find . -name "?*[0-9].sh" -type f -size +1M
+find . -type d -name "tmp" -exec ls -lh {} \;
+find . -type d -exec du -sh {} +
+find . -type d -name "make" -exec touch {}/info.txt \;
+```
+| option                             | meaning                      |
+|------------------------------------|------------------------------|
+| `-name`                            | search file name             |
+| `-type`                            | search file type (d or f)    |
+| `-maxdepth`, `-mindepth`           | set search depth             |
+| `-empty`                           | search empty dirs and files  |
+| '-size'                            | search by size               |
+| `-exec` operation `{}` `+` or `\;` | execute on the search result |
+| `-delete`                          | delete search results        |
 
 ## text manipulation
 
@@ -188,3 +203,35 @@ cal 04 2022
 | `-y`   | year    |
 | `-A`   | after   |
 | `-B`   | before  |
+
+```commandline
+gzip largefile
+gunzip largefile.gz
+
+bzip2 largefile
+bunzip2 largefile.bz2
+```
+
+```commandline
+# make archive file
+tar -cvf archive.tar files folders
+# ls archive file
+tar -tf archive.tar
+# extract arcive file
+tar -xvf archive.tar
+# make comperesed archive file
+tar -zcvf archive.tar.gz files folders
+# extract comperesed archive file
+tar -zxvf archive.tar.gz
+# add new files to archive
+tar -uvf backup.tar newFiles
+```
+| option | meaning            |
+|--------|--------------------|
+| `-z`   | gzip               |
+| `-c`   | create             |
+| `-x`   | extract            |
+| `-u`   | update             |
+| `-v`   | verbose (with log) |
+| `-f`   | get file name      |
+| `-t`   | ls in archive      |
