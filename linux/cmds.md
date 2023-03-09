@@ -1,10 +1,34 @@
 # Linux Command line cheatsheet
 
+### Table of contents
+
+- [directory discovery](#directory-discovery)
+  - ls
+  - mkdir - rmdir
+  - rm - mv - cp
+  - du
+  - file
+  - find
+- [text manipulation](#text-manipulation)
+  - cat
+  - head - tail
+  - more - less
+  - cut - awk
+  - wc
+  - sort
+  - grep
+- [user and permission](#user-and-permission)
+- [others](#others)
+  - history
+  - date - cal
+  - gzip - bzip2 - tar
+
 ## directory discovery
 
 ```commandline
 ls -ltrh
 ```
+
 | option | meaning                            |
 |--------|------------------------------------|
 | `-t`   | sort by time                       |
@@ -18,6 +42,7 @@ ls -ltrh
 mkdir -p dir1/dir2 dir3 dir4/dir5/dir6
 rmdir -p dir4/dir5/dir6
 ```
+
 | option | meaning       |
 |--------|---------------|
 | `-p`   | handle parent |
@@ -27,6 +52,7 @@ rm -rf fileName
 mv -r from to
 cp -rv from to > logFileName
 ```
+
 | option | meaning                              |
 |--------|--------------------------------------|
 | `-r`   | recursively (handle sub directories) |
@@ -36,6 +62,7 @@ cp -rv from to > logFileName
 ```commandline
 du -ch
 ```
+
 | option   | meaning        |
 |----------|----------------|
 | `-h`     | human readable |
@@ -47,6 +74,7 @@ du -ch
 ```commandline
 file fileName
 ```
+
 | option | meaning |
 |--------|---------|
 | `-b`   | brief   |
@@ -58,6 +86,7 @@ find . -type d -name "tmp" -exec ls -lh {} \;
 find . -type d -exec du -sh {} +
 find . -type d -name "make" -exec touch {}/info.txt \;
 ```
+
 | option                             | meaning                      |
 |------------------------------------|------------------------------|
 | `-name`                            | search file name             |
@@ -78,6 +107,7 @@ cat <<EOF > fileName
 some text
 EOF
 ```
+
 | option | meaning        |
 |--------|----------------|
 | `-n`   | number line    |
@@ -88,6 +118,7 @@ head -n to
 tail +from 
 cat fileName | head -n to | tail +from
 ```
+
 | option | meaning            |
 |--------|--------------------|
 | `-n`   | first/last n lines |
@@ -96,6 +127,7 @@ cat fileName | head -n to | tail +from
 ```commandline
 less +lineNumber fileName
 ```
+
 | option         | meaning                |
 |----------------|------------------------|
 | `+`line number | show after line number |
@@ -114,8 +146,12 @@ less +lineNumber fileName
 
 ```commandline
 cut -d "delimiter" -f columnNumbers fileName
+
+awk -F delimiter '{print $1, $2}' columnarFile
+awk '/regex pattern/{action}' my_file
 ```
-| option               | meaning       |
+
+| cut option           | meaning       |
 |----------------------|---------------|
 | `-b`                 | select bytes  |
 | `d`                  | delimiter     |
@@ -125,6 +161,7 @@ cut -d "delimiter" -f columnNumbers fileName
 ```commandline
 wc fileName
 ```
+
 | option | meaning     |
 |--------|-------------|
 | `-l`   | lines count |
@@ -135,6 +172,7 @@ wc fileName
 ```commandline
 sort -nr
 ```
+
 | option | meaning       |
 |--------|---------------|
 | `-n`   | numeric sort  |
@@ -145,6 +183,7 @@ sort -nr
 grep string fileName
 grep workd -E "word1" -E "word2" -E "word3" fileName > outplutFile
 ```
+
 | option | meaning          |
 |--------|------------------|
 | `-i`   | case insensitive |
@@ -154,10 +193,14 @@ grep workd -E "word1" -E "word2" -E "word3" fileName > outplutFile
 | `-n`   | show number line |
 | `-E`   | regex search     |
 
+## user and permission
+
 ## others
+
 ```commandline
 history <number>
 ```
+
 | option | meaning |
 |--------|---------|
 | `-c`   | clear   |
@@ -226,6 +269,7 @@ tar -zxvf archive.tar.gz
 # add new files to archive
 tar -uvf backup.tar newFiles
 ```
+
 | option | meaning            |
 |--------|--------------------|
 | `-z`   | gzip               |
