@@ -22,6 +22,7 @@
   - history
   - date - cal
   - gzip - bzip2 - tar
+  - apt
 
 ## directory discovery
 
@@ -81,6 +82,7 @@ file fileName
 
 ```commandline
 find dir searchConditions Operations
+
 find . -name "?*[0-9].sh" -type f -size +1M
 find . -type d -name "tmp" -exec ls -lh {} \;
 find . -type d -exec du -sh {} +
@@ -205,11 +207,9 @@ history <number>
 |--------|---------|
 | `-c`   | clear   |
 
-```commandline
-commandName --help
-info commandName
-man commandName
-```
+- help `commandName --help`
+- info `info commandName`
+- manual `man commandName`
 
 ```commandline
 date -u "+%Y/%m/%d"
@@ -220,21 +220,15 @@ date "+%A %B %d %T"
 |--------|----------------|
 | `-u`   | universal time |
 
-| format     | meaning              |
-|------------|----------------------|
-| `%D`       | mm/dd/yy             |
-| `%d`       | day on month         |
-| `%a`       | week name (Sat)      |
-| `%A`       | week name (Saturday) |
-| `%h`, `%b` | month name (Jan)     |
-| `%B`       | month name (January) |
-| `%m`       | month number         |
-| `%y`       | year (23)            |
-| `%Y`       | year (2023)          |
-| `%T`       | HH:MM:SS             |
-| `%H`       | hour                 |
-| `%M`       | minute               |
-| `%S`       | second               |
+| format     | meaning          | format | meaning              |
+|------------|------------------|--------|----------------------|
+| `%D`       | mm/dd/yy         | `%T`   | HH:MM:SS             |
+| `%d`       | day on month     | `%m`   | month number         |
+| `%a`       | week name (Sat)  | `%A`   | week name (Saturday) |
+| `%h`, `%b` | month name (Jan) | `%B`   | month name (January) |
+| `%y`       | year (23)        | `%Y`   | year (2023)          |
+| `%H`       | hour             | `%M`   | minute               |
+| `%S`       | second           |
 
 ```commandline
 cal -y -A 1 -B 2
@@ -255,20 +249,13 @@ bzip2 largefile
 bunzip2 largefile.bz2
 ```
 
-```commandline
-# make archive file
-tar -cvf archive.tar files folders
-# ls archive file
-tar -tf archive.tar
-# extract arcive file
-tar -xvf archive.tar
-# make comperesed archive file
-tar -zcvf archive.tar.gz files folders
-# extract comperesed archive file
-tar -zxvf archive.tar.gz
-# add new files to archive
-tar -uvf backup.tar newFiles
-```
+- make archive file `tar -cvf archive.tar files folders`
+- ls archive file `tar -tf archive.tar`
+- extract archive file `tar -xvf archive.tar`
+- make compressed archive file `tar -zcvf archive.tar.gz files folders`
+- extract compressed archive file `tar -zxvf archive.tar.gz`
+- add new files to archive `tar -uvf backup.tar newFiles`
+
 
 | option | meaning            |
 |--------|--------------------|
