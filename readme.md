@@ -4,3 +4,4 @@
 2. [elasticsearch](https://github.com/shayansm2/eng-notebook/tree/main/elasticsearch)
 3. [kafka](https://github.com/shayansm2/eng-notebook/tree/main/kafka)
 4. [docker](https://github.com/shayansm2/eng-notebook/tree/main/docker)
+5. [linux command line](https://github.com/shayansm2/eng-notebook/blob/main/linux/cmds.md)

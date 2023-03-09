@@ -4,6 +4,7 @@ Resources:
 1. database internals book
 2. [isolation levels explained](https://ssudan16.medium.com/database-isolation-levels-explained-61429c4b1e31)
 3. [how database works](http://coding-geek.com/how-databases-work/)
+4. [build your own database](https://build-your-own.org/database/)
 
 ## Concurrency control
 ### Concurrency problems:
