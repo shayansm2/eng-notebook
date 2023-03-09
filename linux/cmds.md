@@ -24,6 +24,7 @@
   - gzip - bzip2 - tar
   - apt
 
+---
 ## directory discovery
 
 ```commandline
@@ -39,6 +40,7 @@ ls -ltrh
 | `-a`   | all                                |
 | `-R`   | recursively (show sub directories) |
 
+---
 ```commandline
 mkdir -p dir1/dir2 dir3 dir4/dir5/dir6
 rmdir -p dir4/dir5/dir6
@@ -48,6 +50,7 @@ rmdir -p dir4/dir5/dir6
 |--------|---------------|
 | `-p`   | handle parent |
 
+---
 ```commandline
 rm -rf fileName
 mv -r from to
@@ -60,6 +63,7 @@ cp -rv from to > logFileName
 | `-f`   | force                                |
 | `-v`   | verbose (with log)                   |
 
+---
 ```commandline
 du -ch
 ```
@@ -72,6 +76,7 @@ du -ch
 | `-a`     | all            |
 | `--time` | with time      |
 
+---
 ```commandline
 file fileName
 ```
@@ -80,6 +85,7 @@ file fileName
 |--------|---------|
 | `-b`   | brief   |
 
+---
 ```commandline
 find dir searchConditions Operations
 
@@ -99,6 +105,7 @@ find . -type d -name "make" -exec touch {}/info.txt \;
 | `-exec` operation `{}` `+` or `\;` | execute on the search result |
 | `-delete`                          | delete search results        |
 
+---
 ## text manipulation
 
 ```commandline
@@ -115,6 +122,7 @@ EOF
 | `-n`   | number line    |
 | `-b`   | show non blank |
 
+---
 ```commandline
 head -n to
 tail +from 
@@ -126,6 +134,7 @@ cat fileName | head -n to | tail +from
 | `-n`   | first/last n lines |
 | `-c`   | first/last c chars |
 
+---
 ```commandline
 less +lineNumber fileName
 ```
@@ -146,6 +155,7 @@ less +lineNumber fileName
 | `g`, `G`  | first page, last page |
 | `:`number | go to lines ahead     |
 
+---
 ```commandline
 cut -d "delimiter" -f columnNumbers fileName
 
@@ -160,6 +170,7 @@ awk '/regex pattern/{action}' my_file
 | `-f`                 | select fields |
 | `--output-delimiter` ||
 
+---
 ```commandline
 wc fileName
 ```
@@ -171,6 +182,7 @@ wc fileName
 | `-m`   | chars count |
 | `-c`   | bytes count |
 
+---
 ```commandline
 sort -nr
 ```
@@ -181,6 +193,7 @@ sort -nr
 | `-r`   | reverse       |
 | `-k`   | sort a column |
 
+---
 ```commandline
 grep string fileName
 grep workd -E "word1" -E "word2" -E "word3" fileName > outplutFile
@@ -195,8 +208,10 @@ grep workd -E "word1" -E "word2" -E "word3" fileName > outplutFile
 | `-n`   | show number line |
 | `-E`   | regex search     |
 
+---
 ## user and permission
 
+---
 ## others
 
 ```commandline
@@ -207,10 +222,12 @@ history <number>
 |--------|---------|
 | `-c`   | clear   |
 
+---
 - help `commandName --help`
 - info `info commandName`
 - manual `man commandName`
 
+---
 ```commandline
 date -u "+%Y/%m/%d"
 date "+%A %B %d %T"
@@ -241,6 +258,7 @@ cal 04 2022
 | `-A`   | after   |
 | `-B`   | before  |
 
+---
 ```commandline
 gzip largefile
 gunzip largefile.gz
@@ -267,6 +285,7 @@ bunzip2 largefile.bz2
 | `-f`   | get file name      |
 | `-t`   | ls in archive      |
 
+---
 - update package list `sudo apt search zsh`
 - search for a package `sudo apt search zsh`
 - install a package `sudo apt install zsh`
