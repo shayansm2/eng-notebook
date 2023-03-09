@@ -18,6 +18,10 @@
   - sort
   - grep
 - [user and permission](#user-and-permission)
+  - whoami - id
+  - adduser - addgroup - usermod
+  - su
+  - chown - chmod
 - [others](#others)
   - history
   - date - cal
@@ -196,7 +200,9 @@ sort -nr
 ---
 ```commandline
 grep string fileName
+
 grep workd -E "word1" -E "word2" -E "word3" fileName > outplutFile
+cat /etc/passwd | grep $(whoami) | cut -d ":" -f 7
 ```
 
 | option | meaning          |
@@ -210,6 +216,64 @@ grep workd -E "word1" -E "word2" -E "word3" fileName > outplutFile
 
 ---
 ## user and permission
+
+- get user data
+```commandline
+whoami
+id (userName)
+```
+- create / remove user/group
+```commandline
+sudo adduser userName
+sudo deluser --remove-home userName
+
+sudp addgroupd groupName
+sudo delgroup groupName
+```
+
+- add user to the group
+```commandline
+sudo usermod -a -G groupName userName
+```
+| option | meaning |
+|--------|---------|
+| `-G`   | Group   |
+| `-a`   | append  |
+
+---
+- login with another user
+```commandline
+su - userName
+```
+| option | meaning     |
+|--------|-------------|
+| `-c`   | run command |
+| `-l`   | login       |
+| `-s`   | shell       |
+
+---
+```commandline
+sudo chown <USER>:<GROUP> file
+```
+```commandline
+chmod [actor][change][permission] fileName
+chmod [0-7 user][0-7 group][0-7 others] filename
+
+chmod o+w filename
+chmod +x filename # make a file executable
+chmod 666 filename
+```
+
+| actors      | meaning | change | meaning | permission | meaning |
+|-------------|---------|--------|---------|------------|---------|
+| `u`         | user    | `+`    | add     | `r`        | read    |
+| `g`         | group   | `-`    | remove  | `w`        | write   |
+| `o`         | others  | `=`    | assign  | `x`        | execute |
+| `a` or NULL | all     |        |         |            |         |
+
+
+![np](RWX.png)
+
 
 ---
 ## others
@@ -286,7 +350,7 @@ bunzip2 largefile.bz2
 | `-t`   | ls in archive      |
 
 ---
-- update package list `sudo apt search zsh`
+- update package list `sudo apt update`
 - search for a package `sudo apt search zsh`
 - install a package `sudo apt install zsh`
 - uninstall a package `sudo apt remove zsh`
