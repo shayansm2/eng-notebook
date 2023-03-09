@@ -266,3 +266,10 @@ bunzip2 largefile.bz2
 | `-v`   | verbose (with log) |
 | `-f`   | get file name      |
 | `-t`   | ls in archive      |
+
+- update package list `sudo apt search zsh`
+- search for a package `sudo apt search zsh`
+- install a package `sudo apt install zsh`
+- uninstall a package `sudo apt remove zsh`
+- uninstall dependency packages which do not need anymore `sudo apt autoremove`
+- upgrade installed packages `sudo apt upgrade`
