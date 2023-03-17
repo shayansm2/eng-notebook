@@ -105,7 +105,7 @@ find . -type d -name "make" -exec touch {}/info.txt \;
 | `-type`                            | search file type (d or f)    |
 | `-maxdepth`, `-mindepth`           | set search depth             |
 | `-empty`                           | search empty dirs and files  |
-| '-size'                            | search by size               |
+| `-size`                            | search by size               |
 | `-exec` operation `{}` `+` or `\;` | execute on the search result |
 | `-delete`                          | delete search results        |
 
