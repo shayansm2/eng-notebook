@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"type":"group","id":"9fdb670e2c4df70c","x":-600,"y":-220,"width":520,"height":480,"label":"metric attributes"},
+		{"type":"group","id":"48805b58622a7f60","x":-20,"y":-220,"width":380,"height":480,"color":"1","label":"Prometheus server"},
+		{"type":"text","text":"Prometheus web UI or Grafana ","id":"28c007238351a6ee","x":20,"y":300,"width":300,"height":60,"color":"5"},
+		{"type":"text","text":"## Data Retrieval Worker: \n- pulls metric data","id":"a63b5b716ed082ff","x":0,"y":-200,"width":340,"height":120},
+		{"type":"text","text":"## Time Series DB: \n- Stores metric data","id":"8cc6b4236f444c2a","x":0,"y":-40,"width":340,"height":120},
+		{"type":"text","text":"## HTTP Server: \n- accepts PromQL queries","id":"8e9a34d31ea469e5","x":0,"y":120,"width":340,"height":120},
+		{"type":"text","text":"applications","id":"fc637228a62a27d1","x":660,"y":-200,"width":250,"height":60},
+		{"type":"text","text":"services","id":"95642bca077f592d","x":660,"y":-110,"width":250,"height":60},
+		{"type":"text","text":"servers","id":"d577e6a537926943","x":660,"y":-10,"width":250,"height":60},
+		{"type":"text","text":"push gateway","id":"714b427fe253dbf0","x":660,"y":-290,"width":250,"height":60,"color":"1"},
+		{"type":"text","text":"exporter:\n1. fetch metrics from the service (PHP, MySql, Go exporter)\n2. converts to the correct format Prometheus understands\n3. expose metrics using HTTP /metrics","id":"1f4e4beb5b98d6af","x":380,"y":-80,"width":250,"height":340,"color":"4"},
+		{"type":"text","text":"help: description of the metrics","id":"840eb6af963f6ce7","x":-580,"y":-200,"width":250,"height":60,"color":"2"},
+		{"type":"text","text":"type","id":"92d70fe9480ae3d0","x":-580,"y":-120,"width":250,"height":60,"color":"2"},
+		{"type":"text","text":"1. counter: how many times X happend","id":"54c52cf3c99aa3cf","x":-380,"y":-20,"width":250,"height":60,"color":"3"},
+		{"type":"text","text":"2. gauge: what is the current value of X now","id":"6f033521cad04c50","x":-380,"y":80,"width":280,"height":60,"color":"3"},
+		{"type":"text","text":"3. histogram: how long or how big","id":"a85d5fe694e6e099","x":-380,"y":180,"width":250,"height":60,"color":"3"}
+	],
+	"edges":[
+		{"id":"6a88183fb17fff39","fromNode":"92d70fe9480ae3d0","fromSide":"bottom","toNode":"54c52cf3c99aa3cf","toSide":"left","toEnd":"none"},
+		{"id":"012bbdbe5efc2085","fromNode":"92d70fe9480ae3d0","fromSide":"bottom","toNode":"6f033521cad04c50","toSide":"left","toEnd":"none"},
+		{"id":"89f5308018fc2c4a","fromNode":"92d70fe9480ae3d0","fromSide":"bottom","toNode":"a85d5fe694e6e099","toSide":"left","toEnd":"none"},
+		{"id":"5dfae361a6430117","fromNode":"a63b5b716ed082ff","fromSide":"bottom","toNode":"8cc6b4236f444c2a","toSide":"top"},
+		{"id":"e6816ffead73523d","fromNode":"a63b5b716ed082ff","fromSide":"bottom","toNode":"8cc6b4236f444c2a","toSide":"top"},
+		{"id":"abaf4b748ae25849","fromNode":"8e9a34d31ea469e5","fromSide":"top","toNode":"8cc6b4236f444c2a","toSide":"bottom"},
+		{"id":"0591297b76f6d72c","fromNode":"28c007238351a6ee","fromSide":"top","toNode":"8e9a34d31ea469e5","toSide":"bottom"},
+		{"id":"12173ea1a990c15a","fromNode":"a63b5b716ed082ff","fromSide":"right","toNode":"fc637228a62a27d1","toSide":"left"},
+		{"id":"4e9361b86138b5ba","fromNode":"a63b5b716ed082ff","fromSide":"right","toNode":"95642bca077f592d","toSide":"left","label":"pulling from exporter"},
+		{"id":"7d623798f832f75c","fromNode":"a63b5b716ed082ff","fromSide":"right","toNode":"d577e6a537926943","toSide":"left"},
+		{"id":"e8e2fc4d6a643d38","fromNode":"a63b5b716ed082ff","fromSide":"right","toNode":"714b427fe253dbf0","toSide":"left","label":"pulling"},
+		{"id":"65f90002bdd61125","fromNode":"fc637228a62a27d1","fromSide":"right","toNode":"714b427fe253dbf0","toSide":"right"},
+		{"id":"6a0c3dcd1528852d","fromNode":"95642bca077f592d","fromSide":"right","toNode":"714b427fe253dbf0","toSide":"right","label":"pushing"},
+		{"id":"a7c971a57fe9962a","fromNode":"d577e6a537926943","fromSide":"right","toNode":"714b427fe253dbf0","toSide":"right"},
+		{"id":"8ca75774ab60fedf","fromNode":"8cc6b4236f444c2a","fromSide":"left","toNode":"9fdb670e2c4df70c","toSide":"right","toEnd":"none"}
+	]
+}

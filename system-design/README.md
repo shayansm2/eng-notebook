@@ -27,12 +27,23 @@ requirements can be clarified as:
 inputs or your own estimations:
 
 - daily active users (DAU)
-- request oer second (RPS)
+- request per second (RPS)
 - read vs write ratio
 
 outputs:
 
 - Traffic estimates
-- Storage estimates
-- Bandwidth estimates
+  - request per second (RPS)
+  - query per second (QPS)
+- Storage estimates (B)
+- Bandwidth estimates (in and out B/s)
 - Memory estimates
+  - 80-20 rule
+
+
+## Step3: System interface definition or System APIs
+## step 4: Defining data model or DB design
+- choose the db
+  - SQL and transactional: MySQL, SQL server
+  - NoSQL: DynamoDB, Cassandra, Riak
+- db schema
