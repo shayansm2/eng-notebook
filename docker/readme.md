@@ -35,8 +35,8 @@ If layer exists locally, it will not get downloaded again (can occur in update i
 
 ---
 * creates a container from image, starts the container, if not found locally get the image from docker hub
-![[dockerRun.png]]
-![[dockerRun2.png]]
+![dockerRun.png](./static/dockerRun.png)
+![dockerRun2.png](./static/dockerRun2.png)
 ```commandline
 docker run imageName:version
 docker run -d imageName
