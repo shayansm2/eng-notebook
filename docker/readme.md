@@ -213,7 +213,7 @@ and ![Untitled](static/dockerComposeIcon.png) is the icon of docker-compose
 ## Docker Volumes
 use for data persistence (db containers)
 we plug the physical system file path into the container file path
-![[volumes.png]]
+![volumes.png](./static/volumes.png)
 
 - building a container with volume
 ```
