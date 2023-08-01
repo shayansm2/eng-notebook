@@ -3,6 +3,7 @@ main resources:
 - [ ] [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
 - [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
 - [ ] [youtube of data-engineering zoomcamp](https://www.youtube.com/watch?v=EYNwNlOrpr0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
+- [ ] the docker book
 
 usefully articles:
 - https://opensource.com/resources/virtualization
@@ -34,6 +35,8 @@ If layer exists locally, it will not get downloaded again (can occur in update i
 
 ---
 * creates a container from image, starts the container, if not found locally get the image from docker hub
+![[dockerRun.png]]
+![[dockerRun2.png]]
 ```commandline
 docker run imageName:version
 docker run -d imageName
@@ -100,7 +103,7 @@ docker exec -it containerId bash
 docker exec -it containerName /bin/bash
 docker exec -it containerName /bin/sh -u userName
 ```
-which `-it` means iterative and `-u` means to enter the terminal of which user
+which `-it` means iterative terminal and `-u` means to enter the terminal of which user
 
 some containers don't have bash and should connect to shell instead
 
@@ -208,4 +211,52 @@ you can only delete an image when no container is using it.
 and ![Untitled](static/dockerComposeIcon.png) is the icon of docker-compose
 
 ## Docker Volumes
-// todo
+use for data persistence (db containers)
+we plug the physical system file path into the container file path
+![[volumes.png]]
+
+- building a container with volume
+```
+docker run -v hostPath:containerPath imageName
+```
+- specify the volume in docker-compose
+```
+services:
+	service1:
+		volumes:
+			- name1:containerPath
+	service2:
+		volumes:
+			- hostPath:containerPath
+
+volumes:
+	name1
+```
+
+there are three types of volumes which are:
+1. host volumes `hostPath:containerPath`
+2. anonymous volumes `containerPath`
+3. named volumes `name:containerPath`
+
+## commands cheat sheet
+|command|use case|functionality|
+|---|---|---|
+|`docker pul`|🖼️ images|get the image from the docker hub|
+|`docker run`|🖼️ images|get and create a container from image |
+|`docker images`|🖼️ images|images list|
+|`docker rmi`|🖼️ images|remove an image|
+|`docker build`|🖼️ images|create an image from a Dockerfile|
+|`docker start`|📦 containers|start the container|
+|`docker stop`|📦 containers|stop the container|
+|`docker restart`|📦 containers|restart the container|
+|`docker ps`|📦 containers|containers list|
+|`docker logs`|📦 containers|see logs of a container|
+|`docker exec`|📦 containers|go to the container's terminal|
+|`docker rm`|📦 containers|remove a container|
+|`docker network ls`|🌐 network|networks list|
+|`docker network create`|🌐 network|create a network|
+|`docker-compose up`|🚢 docker-compose|create a docker-compose from docker-compose file|
+|`docker-compose down`|🚢 docker-compose|remove the docker-compose|
+|`docker-compose start`|🚢 docker-compose|start the created docker-compose|
+|`docker-compose restart`|🚢 docker-compose|
+|`docker-compose stop`|🚢 docker-compose|
