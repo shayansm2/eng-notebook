@@ -1,17 +1,13 @@
 # Docker
 main resources: 
-- [ ] [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
+- [x] [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
 - [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
 - [ ] [youtube of data-engineering zoomcamp](https://www.youtube.com/watch?v=EYNwNlOrpr0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-- [ ] the docker book
-
-usefully articles:
-- https://opensource.com/resources/virtualization
-- https://www.citrix.com/glossary/what-is-containerization.html
-- https://docs.docker.com/get-started/
-- https://github.com/wsargent/docker-cheat-sheet
-- https://docker-curriculum.com/
-- https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
+- [ ] https://docs.docker.com/get-started/
+- [ ] https://github.com/wsargent/docker-cheat-sheet
+- [ ] https://docker-curriculum.com/
+- [ ] https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
+- [ ] ![dockerSwarm.pdf](dockerSwarm.pdf)
 
 ## Docker Basics
 **what is Container**: a portable package of applications with all their dependencies and configurations which makes development easier.
