@@ -7,7 +7,7 @@ main resources:
 - [ ] https://github.com/wsargent/docker-cheat-sheet
 - [ ] https://docker-curriculum.com/
 - [ ] https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
-- [ ] ![dockerSwarm.pdf](dockerSwarm.pdf)
+- [ ] ![dockerSwarm.pdf](./static/dockerSwarm.pdf)
 
 ## Docker Basics
 **what is Container**: a portable package of applications with all their dependencies and configurations which makes development easier.
