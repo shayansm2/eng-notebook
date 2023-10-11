@@ -3,13 +3,14 @@
 main resources:
 
 - [x] [youtube of nana](https://www.youtube.com/watch?v=3c-iBn73dDE&t=1756s)
-- [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
+- [x] [Machine Learning bookcamp](https://www.manning.com/books/machine-learning-bookcamp)
 - [ ] [youtube of data-engineering zoomcamp](https://www.youtube.com/watch?v=EYNwNlOrpr0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
+- [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
 - [ ] https://docs.docker.com/get-started/
 - [ ] https://github.com/wsargent/docker-cheat-sheet
 - [ ] https://docker-curriculum.com/
 - [ ] https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
-- [ ] ![dockerSwarm.pdf](./static/dockerSwarm.pdf)
+- [ ] [dockerSwarm.pdf](./static/dockerSwarm.pdf)
 
 ## Docker Basics
 
