@@ -213,9 +213,11 @@ Dockerfile is a blueprint for building images.
 * `ENV` you can set env variables on dockerfile too, but it's preferred to have them on docker compose file
 * `RUN` you can execute any linux command inside the container
 * `COPY` copy files from the host machine to the container and is different with `RUN cp` which runs on container
-* `WORKDIR` set up the working directory inside the container
-* `CMD` or `ENTRYPOINT` entrypoint command (you can have multiple `RUN`commands but only one `CMD`) which defines what
-  should be run when running the image `docker run -it image:tag`
+* `WORKDIR` set up the working directory inside the container. This is roughly equivalent to the `cd` command in Linux (
+  change directory), so everything we will run after that will be executed in the mentioned folder.
+* `EXPOSE` specify which port our application will use.
+* `CMD` or `ENTRYPOINT` command (you can have multiple `RUN`commands but only one `CMD`) which defines what
+  should be run when running the image `docker run -it image:tag`. It tells how our application should be started
 
 example Dockerfile
 
@@ -243,6 +245,8 @@ ENTRYPOINT ["python", "pipeline.py"]
 ```commandline
 docker build -t imageName:tagName DockerfilePath
 ```
+
+`-t` is for tag name of the image
 
 and then you can run your image with `docker run imageName:tagName`
 > what Jenkins do is that it create an image from the docker file and push the image to the docker repository.
