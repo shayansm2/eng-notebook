@@ -27,19 +27,26 @@
 
 ## Core Objects
 
+**node**: server / computer
+
 **pod**: smallest unit in k8. abstraction of a **container**
 
+- docker container running on a node
 - 1 app per pod
 - each pod has an ip address
 - if a pod crasher, the new recreated pod will have a new ip
 
 **service**: a permanent ip address attached to a pod. it is also a **load balancer**
 
-- external service: open to access from out of the node
-- internal service: cannot access it from outside the node
+- entrypoint of an application
+- routes requests to pods
+- external service: open to access from out of the node (load balancer)
+- internal service: cannot access it from outside the node (cluster ip)
 - service can be connected to multiple pods
 
-ingress: out requests of the node come to ingress, and it will forward the request to services
+ingress: entrypoint of a cluster
+
+- out requests of the node come to ingress, and it will forward the request to services
 
 **config map**: external configs of your app -> plain text
 
@@ -53,11 +60,12 @@ ingress: out requests of the node come to ingress, and it will forward the reque
 **volume**: data storage, attaches a local/remote storage in hard drive to the pod
 
 - if the data is stored in the pod, after restart it will be gone
-- storage is something that is a external hard drive plugged in to he kubernetes cluster
+- storage is something that is an external hard drive plugged in to he kubernetes cluster
 - **kubernetes doesn't manage data persistence**
 
 **deployment**: abstraction of a pod, a blu print of a pod which can be used to create any replication of the pod
 
+- group of pods with the image and config
 - you create deployments, not pods
 - it will be used for stateless pods
 
@@ -82,3 +90,11 @@ each config consists of three parts:
 
 - by comparing desired and current, k8s will update and change the cluster
 - the current states comes from etcd which logs the current status of any k8s component
+- in deployment config, there is a template which is the pod config itself, containing metadata and spec
+
+![img_6.png](statics/img_6.png)
+![img_7.png](statics/img_7.png)
+![img_8.png](statics/img_8.png)
+![img_9.png](statics/img_9.png)
+
+source: [youtube](https://www.youtube.com/watch?v=s_o8dwzRlu4&t=2197s)
