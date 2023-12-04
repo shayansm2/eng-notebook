@@ -97,4 +97,48 @@ each config consists of three parts:
 ![img_8.png](statics/img_8.png)
 ![img_9.png](statics/img_9.png)
 
-source: [youtube](https://www.youtube.com/watch?v=s_o8dwzRlu4&t=2197s)
+## kubectl commands
+
+- in order to create an object from a file
+
+```shell
+kubectl apply -f configFile.yml
+```
+
+- delete an object in a node
+
+```shell
+kubectl delete -f configFile.yml
+```
+
+- in order to see all objects of a specific type
+
+```shell
+kubectl get node
+kubectl get all
+kubectl get pod/configmap/secret
+```
+
+- in order to get some info about an object
+
+```shell
+kubectl describe objectType objectName
+```
+
+- connect to an object and call it using api
+
+```shell
+kubectl port-forwarding objectName hostPort:servicePort
+```
+
+- connect to an object and use its bash
+
+```shell
+kubectl exec -it objectName -- bash
+```
+
+sources:
+
+- [x] [YouTube (crash course)](https://www.youtube.com/watch?v=s_o8dwzRlu4&t=2197s)
+- [ ] [YouTube (zero to hero)](https://www.youtube.com/watch?v=s_o8dwzRlu4&t=2197s)
+- [x] [ML zoomcamp](https://github.com/DataTalksClub/machine-learning-zoomcamp/tree/master/10-kubernetes)
