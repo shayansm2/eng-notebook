@@ -183,21 +183,7 @@ docker run -d \
 
 by running `env` inside the container (`docker exec -it containrId bin/bash`) you can see all the env variables.
 
-## docker compose
-
-instead of running multiple containers in terminal, docker compose automate the process by writing all configurations in
-a **YAML** file.
-![Untitled](static/dockerCompose.png)
-docker compose create a common network for all its containers
-
-* create and run containers (shot down containers) using docker compose
-
-```commandline
-docker-compose -f fileName.yml up
-docker-compose -f fileName.yml down
-```
-
-`-f` is for file name
+---
 
 ## Dockerfile
 
@@ -271,6 +257,44 @@ you can only delete an image when no container is using it.
 
 ---
 
+## docker compose
+
+instead of running multiple containers in terminal, docker compose automate the process by writing all configurations in
+a **YAML** file.
+![Untitled](static/dockerCompose.png)
+
+example docker compose:
+
+```yml
+version: "3.9"
+services:
+  clothing-model:
+    image: zoomcamp-10-model:xception-v4-001
+  gateway:
+    image: zoomcamp-10-gateway:002
+    environment:
+      - TF_SERVING_HOST=clothing-model:8500
+    ports:
+      - "9696:9696"
+```
+
+- as you can see you can have multiple services with different images in one docker compose
+- docker compose create a common network for all its containers. so all the services can see each other
+- configs of each image is preferred to define in the Dockerfile. However, configs related to communication of these
+  services (network stuff) is preferred to be defined in the docker-compose
+- you can call another service by its name like `TF_SERVING_HOST=clothing-model:8500` in the above example.
+
+* create and run containers (shot down containers) using docker compose
+
+```commandline
+docker-compose -f fileName.yml up
+docker-compose -f fileName.yml down
+```
+
+`-f` is for file name
+
+---
+
 ### difference between **dockerfile** and **docker-compose**
 
 - dockerfile is being used when we want to create a new image.
@@ -278,8 +302,9 @@ you can only delete an image when no container is using it.
 - docker-compose is being used when you want to combine multiple containers and their config into a single file
 - docker-compose holds all the configs you may need when running `docker run`
 - docker-compose can consist of multiple containers. in docker desktop, ![Untitled](static/containerIcon.png) is the
-  icon of container
-  and ![Untitled](static/dockerComposeIcon.png) is the icon of docker-compose
+  icon of container and ![Untitled](static/dockerComposeIcon.png) is the icon of docker-compose
+- dockerfile is more about the modification and configs of an image, docker compose is more about communication of all
+  containers
 
 ## Docker Volumes
 
