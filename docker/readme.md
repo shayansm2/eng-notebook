@@ -6,11 +6,8 @@ main resources:
 - [x] [Machine Learning bookcamp](https://www.manning.com/books/machine-learning-bookcamp)
 - [ ] [youtube of data-engineering zoomcamp](https://www.youtube.com/watch?v=EYNwNlOrpr0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
 - [ ] [youtube of jadi](https://www.youtube.com/watch?v=_jKNnHROiC0&t=806s)
-- [ ] https://docs.docker.com/get-started/
-- [ ] https://github.com/wsargent/docker-cheat-sheet
-- [ ] https://docker-curriculum.com/
-- [ ] https://dev.to/signoz/docker-101-introduction-to-docker-1kbm
 - [ ] [dockerSwarm.pdf](./static/dockerSwarm.pdf)
+- [x] [Kubernetes in Action](https://www.manning.com/books/kubernetes-in-action)
 
 ## Docker Basics
 
@@ -106,6 +103,8 @@ docker restard containerId
 
 have in mind that when you restart the container, data will be lost and every configuration will be gone. Data is not
 persistent in containers unless you use **Volumes**.
+
+`docker run busybox echo "Hello world` the image is `busybox` and the command is `echo "hello world"`. these two are different things. commands run in the container not the image.
 
 ### container port vs host port
 
@@ -223,6 +222,11 @@ COPY pipeline.py pipeline.py
 # in this example, we will just run the script
 ENTRYPOINT ["python", "pipeline.py"]
 ```
+
+- each line in the dockerfile is a new layer on top of each other
+- docker daemon builds the images
+- docker client uploads the data (files, dockerfile) to the daemon
+- `ENTRYPOINT` does not execute during the image **build** process. The `ENTRYPOINT` is only executed when a **container** is created and run from the image.
 
 ---
 
@@ -360,5 +364,5 @@ there are three types of volumes which are:
 | `docker-compose up`      | 🚢 docker-compose | create a docker-compose from docker-compose file |
 | `docker-compose down`    | 🚢 docker-compose | remove the docker-compose                        |
 | `docker-compose start`   | 🚢 docker-compose | start the created docker-compose                 |
-| `docker-compose restart` | 🚢 docker-compose |
-| `docker-compose stop`    | 🚢 docker-compose |
+| `docker-compose restart` | 🚢 docker-compose | stop the existing docker-compose |
+| `docker-compose stop`    | 🚢 docker-compose | stop the existing docker-compose |
